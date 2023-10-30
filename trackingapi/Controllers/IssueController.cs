@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using trackingapi.Data;
+using trackingapi.Models;
 
 namespace trackingapi.Controllers
 {
@@ -13,6 +15,12 @@ namespace trackingapi.Controllers
         public IssueController(IssueDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Issue>> Get()
+        {
+            return await _dbContext.Issues.ToListAsync();
         }
     }
 }
