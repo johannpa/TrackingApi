@@ -22,5 +22,12 @@ namespace trackingapi.Controllers
         {
             return await _dbContext.Issues.ToListAsync();
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var issue = await _dbContext.Issues.FindAsync(id);
+            return issue == null ? NotFound() : Ok(issue);
+        }
     }
 }
