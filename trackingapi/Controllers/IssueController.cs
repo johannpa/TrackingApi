@@ -24,6 +24,8 @@ namespace trackingapi.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Issue), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetById(int id)
         {
             var issue = await _dbContext.Issues.FindAsync(id);
