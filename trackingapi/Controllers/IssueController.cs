@@ -54,5 +54,17 @@ namespace trackingapi.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var issueToDelete = await _dbContext.Issues.FindAsync(id);
+            if (issueToDelete == null) return NotFound();
+
+            _dbContext.Issues.Remove(issueToDelete);
+            await _dbContext.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
