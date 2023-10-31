@@ -56,6 +56,7 @@ namespace trackingapi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int id)
         {
             var issueToDelete = await _dbContext.Issues.FindAsync(id);
