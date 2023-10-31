@@ -44,6 +44,7 @@ namespace trackingapi.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Update(int id, Issue issue)
         {
             if (id != issue.Id) return BadRequest();
