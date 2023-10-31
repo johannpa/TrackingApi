@@ -41,5 +41,16 @@ namespace trackingapi.Controllers
 
             return CreatedAtAction(nameof(GetById), new {id = issue.Id}, issue);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Issue issue)
+        {
+            if (id != issue.Id) return BadRequest();
+
+            _dbContext.Entry(issue).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
